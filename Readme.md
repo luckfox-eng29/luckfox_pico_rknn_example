@@ -26,4 +26,4 @@ luckfox_rknn
 
 + ubuntu22.04（WSL）
 - buildroot（基于配置文件 BoardConfig-EMMC-Ubuntu-RV1103_Luckfox_Pico_Plus-IPC.mk修改 ）
-- opencv-mobile（暂时仅支持 RV1103 ）
+- opencv-mobile
