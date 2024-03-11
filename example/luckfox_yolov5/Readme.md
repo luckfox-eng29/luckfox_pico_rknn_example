@@ -36,19 +36,19 @@ make install
 
 ```bash
 cd luckfox_yolov5_demo
-chmod a+x ./luckfox_yolov5_demo_test
+chmod a+x ./rknn_yolov5_demo_test
 ```
 
 + 执行
 
 ```bash
-./luckfox_yolov5_demo_test <yolov5模型> 
+./rknn_yolov5_demo_test <yolov5模型> 
 ```
 
 + 示例
 
 ```bash
-./luckfox_yolov5_demo_test ./model/yolov5.rknn
+./lrknn_yolov5_demo_test ./model/yolov5.rknn
 ```
 
 ## 效果
