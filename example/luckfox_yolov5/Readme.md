@@ -36,7 +36,7 @@ make install
 
 ```bash
 cd luckfox_yolov5_demo
-chmod a+x ./rknn_yolov5_demo_test
+chmod a+x ./luckfox_yolov5_demo_test
 ```
 
 + 执行
@@ -53,4 +53,4 @@ chmod a+x ./rknn_yolov5_demo_test
 
 ## 效果
 
-        摄像头获取图像，经过模型推理和 opencv-mobile 图像处理后在 Pico-LCD-1.3 上显示，会框住摄像头捕获到的物体并标注识别种类和置信度。
+摄像头获取图像，经过模型推理和 opencv-mobile 图像处理后在 Pico-LCD-1.3 上显示，会框住摄像头捕获到的物体并标注识别种类和置信度。
