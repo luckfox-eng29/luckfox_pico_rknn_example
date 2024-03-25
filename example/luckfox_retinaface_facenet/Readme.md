@@ -14,43 +14,58 @@ luckfox_retinaface_facenet
 以 cpp 为例：
 + 设置环境变量
 
-```bash
-export LUCKFOX_SDK_PATH=< luckfox-pico Sdk 地址>
-```
+    ```bash
+    export LUCKFOX_SDK_PATH=< luckfox-pico Sdk 地址>
+    ```
 
 **注意**：使用绝对地址
 
 + 执行
 
-```bash
-cd cpp/build
-cmake ..
-make -j
-make install
-```
+    ```bash
+    cd cpp/build
+    cmake ..
+    make -j
+    make install
+    ```
 
 编译完成后在 `cpp` 文件夹下会生成 `luckfox_retinaface_facenet_demo` 文件夹，移动至 luckfox-pico 运行。
 
+cpp_spi:
+由于 luckfox-pico plus 和 luckfox-pico pro/max 引出引脚不同，根据不同的版型需要修改相应的引脚配置，在 `cpp_spi/CMakeLists.txt` 中进行配置即可。
++ luckfox-pico plus
+
+    添加
+    ```
+    add_definitions(-DLUCKFOX_PICO_PLUS)
+    ```
++ luckfox-pico pro/max
+
+    注释
+    ```
+    #add_definitions(-DLUCKFOX_PICO_PLUS)
+    ```
+**注意**：cpp 中使用的是 framebuffer 方案，引脚在设备树中设置。
 ## 运行
 以 cpp 为例
 + 进入工程文件，配置执行权限
 
-```bash
-cd luckfox_retinaface_facenet_demo
-chmod a+x ./luckfox_retinaface_facenet_demo_test
-```
+    ```bash
+    cd luckfox_retinaface_facenet_demo
+    chmod a+x ./luckfox_retinaface_facenet_demo_test
+    ```
 
 + 执行
 
-```bash
-./luckfox_retinaface_facenet_demo_test <retinaface模型> <facenet模型> <参考图像>
-```
+    ```bash
+    ./luckfox_retinaface_facenet_demo_test <retinaface模型> <facenet模型> <参考图像>
+    ```
 
 + 示例
 
-```bash
-./luckfox_retinaface_facenet_demo_test ./model/RetinaFace.rknn ./model/mobilefacenet.rknn ./test.jpg
-```
+    ```bash
+    ./luckfox_retinaface_facenet_demo_test ./model/RetinaFace.rknn ./model/mobilefacenet.rknn ./test.jpg
+    ```
 
 `test.jpg` 文件替换为选用的参考图片。
 

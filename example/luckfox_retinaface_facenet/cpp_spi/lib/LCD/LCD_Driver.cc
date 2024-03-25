@@ -499,7 +499,7 @@ uint8_t LCD_Read_Id(void)
 	uint8_t reg = 0xDC;
 	uint8_t tx_val = 0x00;
 	uint8_t rx_val;
-
+    LCD_Reset();//Hardware reset
     DEV_Digital_Write(LCD_CS_PIN, 0);
     DEV_Digital_Write(LCD_DC_PIN, 0);
 	DEV_HARDWARE_SPI_TransferByte(reg);

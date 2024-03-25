@@ -20,7 +20,7 @@
 #include "DEV_Config.h" 
 
 #define LCD_2_8				0x52
-#define LCD_3_5				0x00
+#define LCD_3_5				0xff
 
 #define	COLOR				uint16_t		//The variable type of the color (unsigned short) 
 #define	POINT				uint16_t		//The type of coordinate (unsigned short) 

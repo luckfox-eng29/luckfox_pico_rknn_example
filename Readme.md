@@ -9,6 +9,7 @@ luckfox_rknn
 │       └── luckfox_yolov5 ---------------------------------物体识别例程
 ├── scripts ------------------------------------------------文档
 │       └── luckfox_onnx_to_rknn ---------------------------模型装换脚本
+├── dts ----------------------------------------------------framebuffer 设备树文件
 └── Readme.md-----------------------------------------------说明
 ```
 
@@ -27,3 +28,7 @@ luckfox_rknn
 + ubuntu22.04（WSL）
 - buildroot（基于配置文件 BoardConfig-EMMC-Ubuntu-RV1103_Luckfox_Pico_Plus-IPC.mk修改 ）
 - opencv-mobile
+
+
+## 相关教程
+[RKNN实例使用指南](https://wiki.luckfox.com/zh/Luckfox-Pico/RKNN-example)

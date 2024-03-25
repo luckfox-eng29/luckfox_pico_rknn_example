@@ -37,7 +37,6 @@
 
 
 extern UWORD *BlackImage;
-extern uint8_t id;  // LCD id
 
 /*-------------------------------------------
                   Main Function
@@ -68,7 +67,7 @@ int main(int argc, char **argv)
     int facenet_height  = 160;
     int channels = 3;
 
-    //display
+    //Display
     int disp_width;
     int disp_height;
 
@@ -80,29 +79,75 @@ int main(int argc, char **argv)
     memset(&app_retinaface_ctx, 0, sizeof(rknn_app_context_t));
     memset(&app_facenet_ctx, 0, sizeof(rknn_app_context_t));
 
-    //Init Model
-    init_retinaface_facenet_model(model_path, model_path2, &app_retinaface_ctx, &app_facenet_ctx);
+    //Get Dev ID
+    FILE *fp = fopen("/proc/device-tree/model","r");
+    char model[32];
     
-    //Init LCD  
+    fgets(model,32,fp);
+    if (model[strlen(model) - 1] == '\n')
+    model[strlen(model) - 1] = '\0';
+    fclose(fp);
+    
+#ifdef LUCKFOX_PICO_PLUS
+    const char *target_model = "Luckfox Pico Plus";
+    if (strcmp(model, target_model) == 0) {
+        printf("The device model is Luckfox Pico Plus.\n");
+    } else {
+        printf("The device model is not Luckfox Pico Plus.\n");
+        return -1;
+    }
+#else
+    const char *target_model = "Luckfox Pico Max";
+    if (strcmp(model, target_model) == 0) {
+        printf("The device model is Luckfox Pico Pro/Max.\n");
+    } else {
+        printf("The device model is not Luckfox Pico Pro/Max.\n");
+        return -1;
+    }
+#endif
+
+    //Init GPIO
     if(DEV_ModuleInit() != 0){
         DEV_ModuleExit();
         exit(0);
     }
+
+    uint8_t	lcd_id = LCD_Read_Id();
+    printf("lcd_id = %x\n",lcd_id);
+    if(LCD_2_8 == lcd_id){
+        printf("Use LCD_2_8\n"); 
+        disp_width  = LCD_2_8_WIDTH;
+        disp_height = LCD_2_8_HEIGHT;
+    }
+    else if (LCD_3_5 == lcd_id)
+    {
+        printf("Use LCD_3_5\n");
+        // In order to display the same as 2.8 lcd
+        disp_width  = LCD_3_5_HEIGHT;
+        disp_height = LCD_3_5_WIDTH;
+    }
+    else
+    {
+        printf("Use screens that are not currently supported\n"); 
+        return -1;
+    }
+
+    //Init Model
+    init_retinaface_facenet_model(model_path, model_path2, &app_retinaface_ctx, &app_facenet_ctx);
+
+    //Init LCD    
     LCD_SCAN_DIR lcd_scan_dir = SCAN_DIR_DFT;
     LCD_Init(lcd_scan_dir,800);
     Paint_CreatImage();
     Paint_Clear(WHITE);
-    DEV_HARDWARE_SPI_setSpeed(30*1000*1000);
+#ifdef LUCKFOX_PICO_PLUS
+        DEV_HARDWARE_SPI_setSpeed(30*1000*1000);
+#else
+        DEV_HARDWARE_SPI_setSpeed(20*1000*1000);
+#endif
     LCD_BL_1;
     LCD_Display(BlackImage);
-    if(LCD_2_8 == id){ 
-        disp_width  = LCD_2_8_WIDTH;
-        disp_height = LCD_2_8_HEIGHT;
-    }
-    else{
-        disp_width  = LCD_3_5_WIDTH;
-        disp_height = LCD_3_5_HEIGHT;
-    }
+
 
     //Init Opencv
     cv::VideoCapture cap;
@@ -137,7 +182,7 @@ int main(int argc, char **argv)
         start_time = clock();
         //opencv get photo
         cap >> bgr;
-        cv::resize(bgr, bgr640, cv::Size(retina_width,retina_height), 0, 0, cv::INTER_LINEAR); 
+        cv::resize(bgr, bgr640, cv::Size(retina_width,retina_height), 0, 0, cv::INTER_LINEAR);
 
         ret = inference_retinaface_model(&app_retinaface_ctx, &od_results);
         if (ret != 0)
@@ -150,20 +195,19 @@ int main(int argc, char **argv)
         {
             //Get det 
             object_detect_result *det_result = &(od_results.results[i]); 
-            det_remap(det_result);
+            det_remap(det_result,lcd_id);
 
-            //printf("%d %d %d %d\n",det_result->box.left ,det_result->box.top,det_result->box.right,det_result->box.bottom);      
+            printf("%d %d %d %d\n",det_result->box.left ,det_result->box.top,det_result->box.right,det_result->box.bottom);      
             cv::rectangle(bgr,cv::Point(det_result->box.left ,det_result->box.top),
                           cv::Point(det_result->box.right,det_result->box.bottom),
                           cv::Scalar(0,255,0),
                           1);
         
             //Face capture
-             cv::Rect roi(det_result->box.left,   det_result->box.top, 
+            cv::Rect roi(det_result->box.left,   det_result->box.top, 
                          (det_result->box.right - det_result->box.left),
                          (det_result->box.bottom - det_result->box.top));
-             cv::Mat face_img = bgr(roi);
-
+            cv::Mat face_img = bgr(roi);
             //Get five key points
             // for(int j = 0; j < 5;j ++)
             // {
@@ -189,8 +233,6 @@ int main(int argc, char **argv)
                                         cv::FONT_HERSHEY_SIMPLEX,0.5,
                                         cv::Scalar(0,255,0), //GREEN
                                         1);
-
-
         }
         //Fps Show 
         sprintf(fps_text,"fps = %.1f",fps); 
@@ -199,9 +241,8 @@ int main(int argc, char **argv)
                     cv::Scalar(0,255,0),1);
         //LCD Show
         cv::cvtColor(bgr, bgr, cv::COLOR_BGR2BGR565);
+
         Paint_DrawImage((unsigned char *)bgr.data, 0, 0, disp_width, disp_height); 
-        DEV_HARDWARE_SPI_setSpeed(30*1000*1000);
-        LCD_BL_1;
         LCD_Display(BlackImage);
 
         //Get Fps

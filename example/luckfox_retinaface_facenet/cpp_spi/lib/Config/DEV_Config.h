@@ -43,8 +43,7 @@
 
 //GPIO
 //Plus
-#ifdef  LUCKFOX_PLUS 
-
+#ifdef  LUCKFOX_PICO_PLUS 
 #define LCD_DC_PIN   (34)
 #define LCD_CS_PIN   (48)
 #define LCD_RST_PIN  (57)

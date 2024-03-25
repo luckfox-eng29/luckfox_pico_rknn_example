@@ -22,9 +22,6 @@
 #include "LCD_Driver.h"
 
 #define USE_RKNN_MEM_SHARE 0
-extern uint8_t id;  // LCD id
-
-
 
 int clamp(float x, int min, int max) {
     if (x > max) return max;
@@ -688,20 +685,20 @@ out:
 }
 
 
-void det_remap(object_detect_result *det_result)
+void det_remap(object_detect_result *det_result, uint8_t lcd_id)
 {
     const int originalWidth = 640;
     const int originalHeight = 640;
 
     int targetWidth ;
     int targetHeight ;
-    if(LCD_2_8 == id){ 
+    if(LCD_2_8 == lcd_id){ 
         targetWidth  = LCD_2_8_WIDTH;
         targetHeight = LCD_2_8_HEIGHT;
     }
     else{
-        targetWidth  = LCD_3_5_WIDTH;
-        targetHeight = LCD_3_5_HEIGHT;
+        targetWidth  = LCD_3_5_HEIGHT;
+        targetHeight = LCD_3_5_WIDTH;
     }
 
     double scaleX = static_cast<double>(targetWidth) / originalWidth;

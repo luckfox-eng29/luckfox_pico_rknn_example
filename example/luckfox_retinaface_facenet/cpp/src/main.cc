@@ -91,7 +91,7 @@ int main(int argc, char **argv)
     size_t    screensize = FB_WIDTH * FB_HEIGHT * 2;
     uint16_t* framebuffer = (uint16_t*)mmap(NULL, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fb, 0);
 
-    //Init Opencv
+    //Init Opencv-mobile
     cv::VideoCapture cap;
     cv::Mat bgr(disp_height, disp_width, CV_8UC3);
     cv::Mat bgr565(disp_height, disp_width, CV_16UC1);

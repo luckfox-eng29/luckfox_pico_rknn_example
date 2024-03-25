@@ -84,7 +84,7 @@ int init_retinaface_facenet_model(const char *model_path, const char *model_path
 int init_retinaface_model(const char* model_path, rknn_app_context_t* app_ctx);
 int release_retinaface_model(rknn_app_context_t* app_ctx);
 int inference_retinaface_model(rknn_app_context_t* app_ctx,object_detect_result_list* od_results);
-void det_remap(object_detect_result *det_result);
+void det_remap(object_detect_result *det_result,uint8_t lcd_id);
 
 //facenet
 int init_facenet_model(const char* model_path, rknn_app_context_t* app_ctx);
