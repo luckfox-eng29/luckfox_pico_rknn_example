@@ -11,7 +11,7 @@ set(CMAKE_C_COMPILER "${SDK_PATH}/tools/linux/toolchain/arm-rockchip830-linux-uc
 set(CMAKE_CXX_COMPILER "${SDK_PATH}/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-g++"
 )
 
-project(luckfox_retinaface_facenet_spi_demo_text)
+project(luckfox_retinaface_facenet_spi_demo_test)
 
 add_definitions(-DRV1106_1103)
 add_definitions(-DLUCKFOX_PICO_PLUS)

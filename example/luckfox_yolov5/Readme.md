@@ -54,3 +54,9 @@ chmod a+x ./luckfox_yolov5_demo_test
 ## 效果
 
 摄像头获取图像，经过模型推理和 opencv-mobile 图像处理后在 Pico-LCD-1.3 上显示，会框住摄像头捕获到的物体并标注识别种类和置信度。
+
+## 注意
+在运行demo前请执行killall rkipc关闭luckofox-pico开机默认开启的后台程序rkicp ,解除对摄像头的占用。
+
+## NOTE
+Before demo, run killall rkipc to disable rkicp app.

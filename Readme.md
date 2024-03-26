@@ -30,5 +30,8 @@ luckfox_rknn
 - opencv-mobile
 
 
+### 注意
+运行demo前请使用 `killall rkipc` 关闭板端开机的后台程序 rkipc 解除对摄像头的占用。
+
 ## 相关教程
 [RKNN实例使用指南](https://wiki.luckfox.com/zh/Luckfox-Pico/RKNN-example)

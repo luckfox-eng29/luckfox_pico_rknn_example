@@ -77,3 +77,11 @@ cpp_spi:
 
     摄像头获取图像，经过模型推理和 opencv-mobile 图像处理后在 Pico-ResTouch-LCD-2.8/Pico-ResTouch-LCD-3.5 上通过spi通信控制屏幕显示，会框住摄像头中出现的人脸并标注其与参考人脸图像的欧式距离。
 **注意：** 使用 cpp_spi 例程时，不能使用运行在 SD 卡的系统，连接屏幕时会占用 SD 卡的对应引脚，请参考 [luckfox-pico wiki](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-ResTouch-LCD/) 进行配置。
+
+
+## 注意
+在运行 demo 前请执行 `killall rkipc` 关闭 luckofox-pico 开机默认开启的后台程序 rkicp ，解除对摄像头的占用。
+
+## NOTE
+Before demo, run `killall rkipc` to disable rkicp app.
+
