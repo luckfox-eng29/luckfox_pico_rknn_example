@@ -114,6 +114,7 @@ int main(int argc, char **argv)
 
     uint8_t	lcd_id = LCD_Read_Id();
     printf("lcd_id = %x\n",lcd_id);
+    lcd_id = LCD_3_5;
     if(LCD_2_8 == lcd_id){
         printf("Use LCD_2_8\n"); 
         disp_width  = LCD_2_8_WIDTH;
@@ -233,6 +234,7 @@ int main(int argc, char **argv)
                                         cv::FONT_HERSHEY_SIMPLEX,0.5,
                                         cv::Scalar(0,255,0), //GREEN
                                         1);
+            printf("the norm is %f",norm);
         }
         //Fps Show 
         sprintf(fps_text,"fps = %.1f",fps); 

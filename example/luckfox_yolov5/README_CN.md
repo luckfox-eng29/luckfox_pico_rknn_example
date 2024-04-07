@@ -1,3 +1,6 @@
+
+
+**其他语言版本: [English](README.md), [中文](README_CN.md).**
 # Yolov5 物体识别例程
 
 ## 文件结构

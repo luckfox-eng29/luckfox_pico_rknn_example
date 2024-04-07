@@ -1,0 +1,5 @@
+/home/cro/GitPull/luckfox_pico_rknn_example/example/luckfox_retinaface_facenet/cpp_spi/luckfox_retinaface_facenet_spi_demo/./luckfox_retinaface_facenet_spi_demo_test
+/home/cro/GitPull/luckfox_pico_rknn_example/example/luckfox_retinaface_facenet/cpp_spi/luckfox_retinaface_facenet_spi_demo/model/RetinaFace.rknn
+/home/cro/GitPull/luckfox_pico_rknn_example/example/luckfox_retinaface_facenet/cpp_spi/luckfox_retinaface_facenet_spi_demo/model/mobilefacenet.rknn
+/home/cro/GitPull/luckfox_pico_rknn_example/example/luckfox_retinaface_facenet/cpp_spi/luckfox_retinaface_facenet_spi_demo/lib/librknnmrt.so
+/home/cro/GitPull/luckfox_pico_rknn_example/example/luckfox_retinaface_facenet/cpp_spi/luckfox_retinaface_facenet_spi_demo/lib/librga.so
