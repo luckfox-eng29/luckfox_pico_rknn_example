@@ -1,2 +1,0 @@
-/home/cro/Sdk/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-ar qc libSPI.a CMakeFiles/SPI.dir/dev_hardware_SPI.cc.o
-/home/cro/Sdk/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-ranlib libSPI.a
