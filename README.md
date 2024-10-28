@@ -1,3 +1,7 @@
+# NOTE
+**本工程适用于 Kernel-5.10.110 版本的 luckfox-pico SDK，目前本仓库不再维护迁移到 https://github.com/LuckfoxTECH/luckfox_pico_rknn_example**
+
+**This project is suitable for the luckfox-pico SDK based on Kernel version 5.10.110. The current repository is no longer maintained. Please migrate to https://github.com/LuckfoxTECH/luckfox_pico_rknn_example**
 
 **Read this in other languages: [English](README.md), [中文](README_CN.md).**
 # Luckfox_Pico_rknn_example
